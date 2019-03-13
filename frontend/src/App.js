@@ -1,24 +1,28 @@
 import React, { Component } from 'react';
-import './App.css';
-import axios from 'axios';
+import { Route, Link, Switch } from 'react-router-dom';
+import Home from './Home/Home';
+import Movies from './Movies/Movies';
+import '../src/stylesheets/App.css';
+//export default do not need {} 
+//Route and Link do not need in one component
+
 
 
 class App extends Component {
-  state={
-    users: []
-  }
 
-  componentDidMount() {
-    axios('/users')
-    .then(res => this.setState({users: res.data}))
-  }
   render() {
     return (
       <div className="App">
-        <h1>Users</h1>
-        {this.state.users.map(user => 
-          <div key={user.id}> {user.username}</div>
-        )}
+        <nav>
+          <Link to = '/' className='home-left'> Home </Link> {" "}
+          <Link to = '/movies' className = 'home-right' > All Movies </Link> {" "}
+          <Link to = '/movies/bygenre' className = 'home-right' > By Genre </Link> {" "}
+          <Link to = "/movies/1" className = 'home-right' > Single Movie </Link>
+        </nav>
+        <Switch>
+          <Route exact path='/' component={Home}/>
+          <Route path='/movies' component={Movies}/>
+        </Switch>
       </div>
     );
   }

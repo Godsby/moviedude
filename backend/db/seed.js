@@ -1,5 +1,5 @@
 //import db to INSERT DATA
-const { db } = require('./index');
+const { db }  = require('./index');
 
 //import fakerAPI and save it as a varible
 const faker = require('faker');

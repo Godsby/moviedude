@@ -1,0 +1,26 @@
+
+.App {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  background-color: darkblue;
+  height: 75px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 20px;
+}
+
+.home-left {
+  padding-right: 700px;
+  color: white;
+}
+
+.home-right {
+  padding-right: 50px;
+  color: white;
+}
