@@ -24,6 +24,19 @@ const allMoviesWithAvgRating = (req, res, next) => {
   .catch(err => next(err))
 }
 
+const singleMovieWithAvgRating = (req, res, next) => {
+  let movieId = parseInt(req.params.id)
+  db.any('SELECT movies.*,movierating.avg FROM movies JOIN(SELECT AVG(stars), movie_id FROM ratings GROUP BY movie_id HAVING movie_id= $1) AS movierating ON movierating.movie_id = movies.id', movieId)
+  .then(data => {
+    res.status(200).json({
+      status: 'succsss',
+      movies: data,
+      message: 'Received A Single Movie With Avg Rating'
+    })
+  })
+  .catch(err => next(err))
+}
+
 const allMoviesWithAvgRatingBiggerThan = (req, res, next) => {
   let ratingValue = parseInt(req.body.rating)
   db.any('SELECT movies.*,movierating.avg FROM movies JOIN(SELECT AVG(stars), movie_id FROM ratings GROUP BY movie_id HAVING AVG(stars) >= $1) AS movierating ON movierating.movie_id = movies.id', ratingValue)
@@ -53,6 +66,7 @@ const moviesByGenre = (req, res, next) => {
 module.exports = { 
   getAllMovies,
   allMoviesWithAvgRating, 
+  singleMovieWithAvgRating, 
   moviesByGenre,
   allMoviesWithAvgRatingBiggerThan
 }

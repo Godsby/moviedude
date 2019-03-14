@@ -1,26 +1,35 @@
+body {
+  margin: 0 0;
+  width: 100%;
+  /* overflow: hidden; */
+}
 
 .App {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+  overflow-y: scroll;
+  background-color: black;
 }
 
 nav {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
+  position: fixed;
+  top: 0;
+  width: 100%;
   background-color: darkblue;
-  height: 75px;
+  padding-top: 26px;
+  padding-bottom: 25px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 20px;
 }
 
 .home-left {
-  padding-right: 700px;
+  float: left;
+  display: block;
+  padding-left: 50px;
   color: white;
 }
 
 .home-right {
+  float: right;
+  display: block;
   padding-right: 50px;
   color: white;
 }

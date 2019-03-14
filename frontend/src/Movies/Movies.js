@@ -5,31 +5,24 @@ import AllMovies from './AllMovies';
 import MoviesByGenre from './MoviesByGenre';
 import SingleMovie from './SingleMovie'
 import axios from 'axios';
-import '../stylesheets/Movie.css';
 
 class Movies extends React.Component {
   state = {
-    movies: [
-      // { id: 1, title: "Harry Potter", genre: "Fantasy" },
-      // { id: 2, title: "Face Off", genre: "Action" },
-      // { id: 3, title: "Zoolander", genre: "Comedy" },
-      // { id: 4, title: "Top Gun", genre: "Action" }
-    ],
+    movies: [],
     genres: ["Fantasy", "Action", "Comedy"]
   }
 
   componentDidMount () {
     axios.get('/movies/ratings')
     .then(res => {
-        this.setState({
-          movies: res.data.movies
-        })
+      this.setState({
+        movies: res.data.movies
       })
+    })
   }
 
   render () {
     const { movies, genres } = this.state;
-    
     return (
       <Switch>
         <Route 
@@ -45,10 +38,7 @@ class Movies extends React.Component {
           }} 
         />
         <Route 
-          path='/movies/:id' 
-          render={() => {
-            return <SingleMovie movies={movies}/> 
-          }} 
+          path='/movies/:movie_id' component={SingleMovie}/> 
         />
       </Switch>
     )
