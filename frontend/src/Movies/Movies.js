@@ -10,10 +10,10 @@ import '../stylesheets/Movie.css';
 class Movies extends React.Component {
   state = {
     movies: [
-      { id: 1, title: "Harry Potter", genre: "Fantasy" },
-      { id: 2, title: "Face Off", genre: "Action" },
-      { id: 3, title: "Zoolander", genre: "Comedy" },
-      { id: 4, title: "Top Gun", genre: "Action" }
+      // { id: 1, title: "Harry Potter", genre: "Fantasy" },
+      // { id: 2, title: "Face Off", genre: "Action" },
+      // { id: 3, title: "Zoolander", genre: "Comedy" },
+      // { id: 4, title: "Top Gun", genre: "Action" }
     ],
     genres: ["Fantasy", "Action", "Comedy"]
   }
@@ -21,9 +21,8 @@ class Movies extends React.Component {
   componentDidMount () {
     axios.get('/movies/ratings')
     .then(res => {
-        const movieArr = res.data.movies
         this.setState({
-          movies: movieArr
+          movies: res.data.movies
         })
       })
   }
