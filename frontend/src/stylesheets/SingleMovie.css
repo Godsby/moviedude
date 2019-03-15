@@ -13,10 +13,43 @@
 .comments {
   display: flex;
   justify-content: left;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+form {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  padding-top: 50px;
+  margin-bottom: 0px;
+  width: 600px;
+  height: 100px;
+}
+
+textarea {
+  min-width: 90%;
+  min-height: 80%;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 16px;
+}
+
+button {
+  height:50px;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 0 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 16px;
 }
 
 li {
   background-color: grey;
+  margin-bottom: 15px;
   box-shadow: none;
   border-radius: 5px;
   border-bottom: 2px solid white;

@@ -31,5 +31,6 @@ CREATE TABLE ratings (
 CREATE TABLE comments (
   id SERIAL PRIMARY KEY,
   text VARCHAR NOT NULL,
+  createdBy TIMESTAMP DEFAULT now(),
   movie_id INT REFERENCES movies(id)
 );

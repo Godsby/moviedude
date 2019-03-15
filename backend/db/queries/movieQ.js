@@ -26,9 +26,8 @@ const allMoviesWithAvgRating = (req, res, next) => {
 
 const singleMovieWithAvgRatingAndComments = (req, res, next) => {
   let movieId = parseInt(req.params.id)
-  db.any('SELECT moviewithrating.*,comments.text FROM (SELECT movies.*, movierating.avg FROM movies JOIN (SELECT AVG(stars), movie_id FROM ratings GROUP BY movie_id) AS movierating ON movierating.movie_id = movies.id WHERE id=$1) AS moviewithrating LEFT JOIN comments ON moviewithrating.id = comments.movie_id', movieId)
+  db.any('SELECT moviewithrating.*,comments.text,comments.createdBy FROM (SELECT movies.*, movierating.avg FROM movies JOIN (SELECT AVG(stars), movie_id FROM ratings GROUP BY movie_id) AS movierating ON movierating.movie_id = movies.id WHERE id=$1) AS moviewithrating LEFT JOIN comments ON moviewithrating.id = comments.movie_id ORDER BY createdBy DESC', movieId)
   .then(data => {
-    console.log(data)
     res.status(200).json({
       status: 'succsss',
       data: data,
