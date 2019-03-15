@@ -6,7 +6,8 @@ import '../stylesheets/SingleMovie.css';
 class SingleMovie extends React.Component {
   state = {
     movie: [],
-    comments: ''
+    comments: '',
+    newComment: ''
   }
 
   componentDidMount() {
@@ -35,15 +36,15 @@ class SingleMovie extends React.Component {
       movie_id: id
     })
     .then(res => {
-      console.log(res)
       this.setState({
+        newComment: this.state.comments,
         comments: ''
       })
     })
   }
   
   render() {
-    const { movie } = this.state;
+    const { movie, newComment, comments } = this.state;
     let id = parseInt(this.props.match.params.movie_id);
 
     let movieObj = movie.find(mov => mov.id === id );
@@ -60,6 +61,18 @@ class SingleMovie extends React.Component {
       )
     })
 
+    if(newComment) {
+      commentList.unshift(
+      <div className='card'>
+        <ul className = 'comments'>
+          <li>
+            <p className='card-content'>Comments: {newComment}</p>
+          </li>
+        </ul>
+      </div>
+      )
+    }
+
     return ( 
       <div className='container'>
         { movie.length ? ( 
@@ -69,12 +82,12 @@ class SingleMovie extends React.Component {
           <p className='card-content'>Title: {movieObj.title}</p>
           </>
         ) : (<h4>Loading...</h4>)}
-        {/* <div className='comments'> */}
-          <form className='comments' onSubmit={this.handleSubmit}>
-            <textarea placeholder='please add your comments' onChange={this.handleChange} name='comments'/>
-            <button type='submit' disabled={!this.state.comments}>Submit</button>
-          </form>
-        {/* </div> */}
+
+        <form className='comments' onSubmit={this.handleSubmit}>
+          <textarea placeholder='please add your comments' onChange={this.handleChange} name='comments' value={comments}/>
+          <button type='submit' disabled={!this.state.comments}>Submit</button>
+        </form>
+
         { commentList }
       </div>
     )
