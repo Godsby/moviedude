@@ -13,18 +13,41 @@ class SingleMovie extends React.Component {
 
     axios.get('/movies/ratings/comments/' + id)
       .then(res => {
-        console.log(res.data.data[0])
         this.setState({
-          movie: res.data.data[0]
+          movie: res.data.data
         })
       })
   }
   
   render() {
+    const { movie } = this.state;
+    let id = parseInt(this.props.match.params.movie_id);
+
+    let movieObj = movie.find(mov => mov.id === id );
+
+    let commentList = movie.map(movie => {
+      return (
+        <div className='card' key={movie.id}>
+          <ul className = 'comments'>
+            <li>
+              <p className='card-content'>Comments: {movie.text}</p>
+            </li>
+          </ul>
+        </div>
+      )
+    })
 
     return ( 
       <div className='container'>
-        <h1> {this.state.movie.title} </h1>
+        { movie.length ? ( 
+          <>
+          <p className='card-content'>Avg rating: {parseFloat(movieObj.avg).toFixed(2)}</p>
+          <img src={movieObj.img_url} alt=''/>
+          <p className='card-content'>Title: {movieObj.title}</p>
+          </>
+        ) : (<h4>Loading...</h4>)}
+        
+        { commentList }
       </div>
     )
   }

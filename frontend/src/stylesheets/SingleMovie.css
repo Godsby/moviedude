@@ -1,4 +1,23 @@
 .container {
   padding-top: 75px;
-  color: orange
+}
+
+.card-content {
+  color: orange;
+}
+
+.card {
+  width: 100%;
+}
+
+.comments {
+  display: flex;
+  justify-content: left;
+}
+
+li {
+  background-color: grey;
+  box-shadow: none;
+  border-radius: 5px;
+  border-bottom: 2px solid white;
 }
