@@ -25,9 +25,9 @@ class AllMovies extends React.Component {
 
   handleFound () {
     const { titleInput } = this.state;
-    const { movies } = this.props;
+    const { moviesWithRating } = this.props;
 
-    let movieFilter = movies.filter(movie => {
+    let movieFilter = moviesWithRating.filter(movie => {
       return movie.title.includes(titleInput);
     })
 
@@ -38,9 +38,9 @@ class AllMovies extends React.Component {
 
   render () {
     const { movieFilter, titleInput, formSubmitted } = this.state;
-    const { movies } = this.props;
+    const { moviesWithRating } = this.props;
 
-    let movieArr = !formSubmitted ? movies : movieFilter;
+    let movieArr = !formSubmitted ? moviesWithRating : movieFilter;
 
     let movieList = movieArr.map(movie => {
       let movieRating = parseFloat(movie.avg).toFixed(2);
@@ -75,7 +75,7 @@ class AllMovies extends React.Component {
         </form>
 
         <div className='movie-container'>
-          { !this.props.movies.length ? <h4>Loading...</h4> : 
+          { !this.props.moviesWithRating.length ? <h4>Loading...</h4> : 
             ( movieList.length ? 
               movieList : <h4> No such a movie was found!</h4> )
           }

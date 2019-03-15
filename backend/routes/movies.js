@@ -12,6 +12,6 @@ router.get('/', getAllMovies);
 router.get('/ratings', allMoviesWithAvgRating);
 router.get('/ratings/:id', singleMovieWithAvgRating);
 router.post('/ratings', allMoviesWithAvgRatingBiggerThan)
-router.get('/genres/:id', moviesByGenre);
+router.get('/genres', moviesByGenre);
 
 module.exports = router;

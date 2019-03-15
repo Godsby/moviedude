@@ -16,7 +16,7 @@ class App extends Component {
         <nav>
           <Link to = '/' className='home-left'> Home </Link> {" "}
           <Link to = '/movies' className = 'home-right' > All Movies </Link> {" "}
-          <Link to = '/movies/bygenre' className = 'home-right' > By Genre </Link> {" "}
+          <Link to = '/movies/genres' className = 'home-right' > By Genre </Link> {" "}
           {/* <Link to = "/movies/:id" className = 'home-right' > Single Movie </Link> */}
         </nav>
         <Switch>

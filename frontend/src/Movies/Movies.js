@@ -8,33 +8,44 @@ import axios from 'axios';
 
 class Movies extends React.Component {
   state = {
-    movies: [],
-    genres: ["Fantasy", "Action", "Comedy"]
+    moviesWithRating: [],
+    moviesByGenre: [],
+    genres: []
   }
 
   componentDidMount () {
+    this.fetchMovieWithGenre();
     axios.get('/movies/ratings')
     .then(res => {
       this.setState({
-        movies: res.data.movies
+        moviesWithRating: res.data.movies
+      })
+    })
+  }
+
+  fetchMovieWithGenre = () => {
+    axios.get('/movies/genres')
+    .then(res => {
+      this.setState({
+        moviesByGenre: res.data.movies
       })
     })
   }
 
   render () {
-    const { movies, genres } = this.state;
+    const { moviesWithRating, moviesByGenre, genres } = this.state;
     return (
       <Switch>
         <Route 
           exact path='/movies' 
           render={() => {
-            return <AllMovies movies={movies}/>
+            return <AllMovies moviesWithRating={moviesWithRating}/>
           }}
         />
         <Route 
-          path='/movies/bygenre' 
+          path='/movies/genres' 
           render={() => {
-            return <MoviesByGenre movies={movies} genres={genres}/> 
+            return <MoviesByGenre moviesByGenre={moviesByGenre} genres={genres}/> 
           }} 
         />
         <Route 
